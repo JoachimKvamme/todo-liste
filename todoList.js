@@ -47,6 +47,7 @@ function updateTodoStatus() {
   let statusLocator = this.parentNode.parentNode;
   let statusField = statusLocator.querySelector("label");
   statusField.textContent = "Fullført!";
+  statusField.style.background = "green";
 }
 
 const todoListElement = document.querySelector("#todoList");
@@ -77,11 +78,11 @@ function handleAddTodo() {
   listItemTextArea.classList.add("listItemTextArea");
   listItemButtonfield.classList.add("listItemButtonField");
 
-  todoStatus.textContent = "Ikke gjennomført";
+  todoStatus.textContent = "Ufullført";
   todoStatus.style.background = "crimson";
   todoElementRemoveButton.textContent = "❌";
   todoElementTickButton.textContent = "✔️";
-  const todoText = document.createElement("label");
+  const todoText = document.createElement("p");
   todoText.textContent = newTodo.title;
   console.log(newTodoListItem);
 
