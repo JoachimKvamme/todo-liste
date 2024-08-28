@@ -1,7 +1,7 @@
 .todoListItem {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   height: 60px;
   width: 200px;
   border: 1px solid crimson;
@@ -37,4 +37,18 @@ li text {
   width: 300px;
   padding: 8px;
   border-radius: 20px;
+}
+
+.listItemButtonField {
+  display: flex;
+  flex-direction: row;
+}
+
+.listItemTextArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.listItemTextArea label {
+  height: 16px;
 }

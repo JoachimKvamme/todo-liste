@@ -39,11 +39,12 @@ function addTodo(title) {
 }
 
 function removeTodoById() {
-  this.parentNode.parentNode.removeChild(this.parentNode);
+  // Denne kodebiten fjerner det listeelementet som knappen man trykker, bor i.
+  this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
 }
 
 function updateTodoStatus() {
-  let statusLocator = this.parentNode;
+  let statusLocator = this.parentNode.parentNode;
   let statusField = statusLocator.querySelector("label");
   statusField.textContent = "Fullført!";
 }
@@ -66,23 +67,33 @@ function handleAddTodo() {
   // Lager html-elementene som utgjør selve listen.
   const newTodoListItem = document.createElement("li");
   newTodoListItem.classList.add("todoListItem");
+  const listItemTextArea = document.createElement("div");
+  const listItemButtonfield = document.createElement("div");
   const todoElementRemoveButton = document.createElement("button");
   const todoElementTickButton = document.createElement("button");
   const todoStatus = document.createElement("label");
+
+  //Legger til klasser til de nye elementene, slik at de kan styles.
+  listItemTextArea.classList.add("listItemTextArea");
+  listItemButtonfield.classList.add("listItemButtonField");
+
   todoStatus.textContent = "Ikke gjennomført";
   todoStatus.style.background = "crimson";
   todoElementRemoveButton.textContent = "❌";
   todoElementTickButton.textContent = "✔️";
-  const todoText = document.createElement("p");
+  const todoText = document.createElement("label");
   todoText.textContent = newTodo.title;
   console.log(newTodoListItem);
 
   todoElementRemoveButton.addEventListener("click", removeTodoById);
   todoElementTickButton.addEventListener("click", updateTodoStatus);
 
-  newTodoListItem.append(todoText);
-  newTodoListItem.append(todoElementTickButton);
-  newTodoListItem.append(todoElementRemoveButton);
+  newTodoListItem.append(listItemTextArea);
+  newTodoListItem.append(listItemButtonfield);
+
+  listItemTextArea.append(todoText);
+  listItemButtonfield.append(todoElementTickButton);
+  listItemButtonfield.append(todoElementRemoveButton);
   newTodoListItem.append(todoStatus);
 
   // legger til liste-elementet til html-dokumentet
