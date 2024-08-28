@@ -73,6 +73,7 @@ function handleAddTodo() {
   const todoElementRemoveButton = document.createElement("button");
   const todoElementTickButton = document.createElement("button");
   const todoStatus = document.createElement("label");
+  const todoText = document.createElement("p");
 
   //Legger til klasser til de nye elementene, slik at de kan styles.
   listItemTextArea.classList.add("listItemTextArea");
@@ -82,12 +83,21 @@ function handleAddTodo() {
   todoStatus.style.background = "crimson";
   todoElementRemoveButton.textContent = "❌";
   todoElementTickButton.textContent = "✔️";
-  const todoText = document.createElement("p");
   todoText.textContent = newTodo.title;
   console.log(newTodoListItem);
 
   todoElementRemoveButton.addEventListener("click", removeTodoById);
   todoElementTickButton.addEventListener("click", updateTodoStatus);
+
+  //Legger til en event-listener som gjør at brukeren kan trykke enter og få et nytt gjøremål, fra input-feltet.
+
+  inputField.addEventListener("keypress", function (click) {
+    if (click.key === "Enter") {
+      buttonElement.click();
+      inputField.value = "";
+      inputField.focus();
+    }
+  });
 
   newTodoListItem.append(listItemTextArea);
   newTodoListItem.append(listItemButtonfield);
