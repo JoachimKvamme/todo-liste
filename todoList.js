@@ -26,7 +26,7 @@ const todoes = [];
 
 function addTodo(title) {
   if (title.length === 0) {
-    console.log("Trenger et listepunkt for å fortsette");
+    console.log("Trenger et gjøremål for å fortsette");
     return;
   }
   // Lager det nye objektet
@@ -42,7 +42,11 @@ function removeTodoById() {
   this.parentNode.parentNode.removeChild(this.parentNode);
 }
 
-function updateTodowithId(id, updatedInfo) {}
+function updateTodoStatus() {
+  let statusLocator = this.parentNode;
+  let statusField = statusLocator.querySelector("label");
+  statusField.textContent = "Fullført!";
+}
 
 const todoListElement = document.querySelector("#todoList");
 const inputField = todoListElement.querySelector("input");
@@ -63,18 +67,23 @@ function handleAddTodo() {
   const newTodoListItem = document.createElement("li");
   newTodoListItem.classList.add("todoListItem");
   const todoElementRemoveButton = document.createElement("button");
-  // const todoElementTickButton = document.createElement("button");
+  const todoElementTickButton = document.createElement("button");
+  const todoStatus = document.createElement("label");
+  todoStatus.textContent = "Ikke gjennomført";
+  todoStatus.style.background = "crimson";
   todoElementRemoveButton.textContent = "❌";
-  // todoElementTickButton.textContent = "✔️";
+  todoElementTickButton.textContent = "✔️";
   const todoText = document.createElement("p");
   todoText.textContent = newTodo.title;
   console.log(newTodoListItem);
 
   todoElementRemoveButton.addEventListener("click", removeTodoById);
+  todoElementTickButton.addEventListener("click", updateTodoStatus);
 
   newTodoListItem.append(todoText);
+  newTodoListItem.append(todoElementTickButton);
   newTodoListItem.append(todoElementRemoveButton);
-  // newTodoListItem.append(todoElementTickButton);
+  newTodoListItem.append(todoStatus);
 
   // legger til liste-elementet til html-dokumentet
   listDisplay.append(newTodoListItem);
